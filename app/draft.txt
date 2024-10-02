@@ -1,0 +1,558 @@
+import { useRouter } from 'expo-router';
+import React,{useState} from 'react';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity,Image } from 'react-native';
+import Colors from '@/constants/Colors';
+import { Ionicons } from '@expo/vector-icons';
+import SegmentedControlTab from "react-native-segmented-control-tab";
+
+
+const DATA = [
+  { id: '1', name: 'Olivier Kwizera', types: 'Crops • Livestock' },
+  { id: '2', name: 'Olivier Kwizera', types: 'Crops • Livestock' },
+  { id: '3', name: 'Olivier Kwizera', types: 'Crops • Livestock' },
+  { id: '4', name: 'Olivier Kwizera', types: 'Crops' },
+  { id: '5', name: 'Olivier Kwizera', types: 'Livestock' },
+  { id: '6', name: 'Olivier Kwizera', types: 'Crops' },
+  { id: '7', name: 'Olivier Kwizera', types: 'Livestock' },
+];
+
+const HomePage = () => {
+
+  const router=useRouter();
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+
+  const renderItem = ({ item }:{item:{id:string; name:string;types:string}}) => (
+    <TouchableOpacity style={styles.itemContainer}
+    //onPress={()=> router.push({pathname:"/registeredFarmer/crops"})}
+    >
+      
+      <View style={styles.circle}>
+        <Text style={styles.circleText}>O</Text>
+      </View>
+      <View style={styles.infoContainer}>
+        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.types}>{item.types}</Text>
+      </View>
+      <Ionicons name="chevron-forward-sharp" size={20} color="#000" />
+
+     
+    </TouchableOpacity>
+  );
+
+  return (
+    <View style ={styles.maincontainer}>
+      <View style={styles.topLevel}>
+      <Text style={styles.header}>Urugwiro</Text>
+      <Text style={styles.subHeader}>Cultivated Land</Text>
+      <Text style={styles.landAmount}>1321 ha</Text>
+      </View>
+
+      <Image source={require("@/assets/images/icons/vectorBranchTree.png")} style={[styles.topRightImage,{tintColor:"#BEE2AC"}]} />
+
+
+      <View  style={styles.container}>
+
+      <View style={styles.switchHeaders}>
+      <Text style={styles.switchText}>Indi-Famer</Text> 
+      <Text style={styles.switchText}>Cooperative</Text> 
+      </View>
+
+      <SegmentedControlTab
+        values={["indi-famer", "cooperative"]}
+        selectedIndex={selectedIndex}
+        onTabPress={setSelectedIndex}
+        tabsContainerStyle={styles.tabsContainer}
+        tabStyle={styles.tabStyle}
+        activeTabStyle={styles.activeTabStyle}
+        tabTextStyle={styles.tabTextStyle}
+        activeTabTextStyle={styles.activeTabTextStyle}
+      />
+
+
+      <View style={styles.collapsibleContent}>
+              <View style={styles.separateLine}>
+                <Text>-</Text>
+              </View>
+            </View>
+
+
+       
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        style={styles.flatList}
+      />
+      
+      <TouchableOpacity style={styles.addButton}
+                 onPress={() => router.push({pathname:`/newCooperative`})}
+
+      >
+        <Text style={styles.addButtonText}>+</Text>
+      </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+
+  maincontainer:{
+  flex:1,
+  height:"100%"
+  },
+
+  container: {
+    backgroundColor:Colors.solidWhite,
+    padding:16,
+    height:"100%"
+
+
+
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#0B2B08',
+    marginBottom:20
+  },
+  subHeader: {
+    fontSize: 18,
+    color: '#784C00',
+  },
+
+  landAmount: {
+    fontSize: 48,
+    fontWeight: 'bold',
+    color: '##0F172A',
+    marginVertical: 8,
+  },
+  registeredFarmers: {
+    fontSize: 13,
+    fontWeight: '600',
+    marginVertical: 12,
+    color:"#94A3B8"
+  },
+  registeredMain:{
+    flexDirection:"row",
+    alignItems: 'center',
+    gap:205,
+    marginBottom:10
+
+  },
+
+  flatList: {
+    flexGrow: 0,
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    marginBottom: 8,
+    
+  },
+  circle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#EAEEFD', 
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+  circleText: {
+    fontSize: 16,
+    color: '#4F378A',
+  },
+  infoContainer: {
+    flex: 1,
+  },
+  name: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  types: {
+    fontSize: 14,
+    color: '#B0B0B0',
+  },
+  addButton: {
+    position: 'absolute',
+    bottom: "30%",
+    right: 20,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor:Colors.green,
+    justifyContent: 'center',
+    alignItems: 'center',
+   
+  },
+  addButtonText: {
+    fontSize: 30,
+    color: '#FFFFFF',
+  },
+
+  topLevel:{
+    backgroundColor:Colors.topSide,
+    padding: 16,
+    height:"20%"
+
+
+  },
+
+  topRightImage: {
+    position: 'absolute',
+    top: 50,
+    right: -5,
+    width: "40%", // Adjust this value as needed
+    height: 100, // Adjust this value as needed
+    color:"red"
+  },
+  collapsibleContent: {
+    padding: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  separateLine: {
+    backgroundColor: "#CBD5E1",
+    height: 1,
+    marginTop: 5,
+    marginBottom: 5,
+    width: "100%",
+  },
+
+  tabsContainer: {
+    marginVertical: 20,
+    
+    
+  },
+  tabStyle: {
+    borderColor: "transparent",
+    backgroundColor: "#F5F5F5",
+    height: 1,
+    padding: 5,
+    //borderWidth: 4,
+    //borderRadius: -40,
+    
+  },
+
+  activeTabStyle: {
+    backgroundColor: "#1E293B",
+    
+  },
+  tabTextStyle: {
+    color: "#333333",
+    fontSize: 16,
+    fontWeight: "600",
+    lineHeight: 24,
+    
+  },
+  activeTabTextStyle: {
+    color: "#FFFFFF",
+  },
+  switchHeaders:{
+    flexDirection:"row",
+    gap:90,
+    marginLeft:53
+  },
+
+  switchText:{
+    fontSize:16,
+    fontWeight:600,
+    lineHeight:24,
+    color:"#0F172A"
+
+  }
+});
+
+export default HomePage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { View, Text,StyleSheet,TouchableOpacity,TextInput, } from 'react-native'
+import React, { useState } from "react";
+
+import Colors from '@/constants/Colors'
+import { useRouter } from 'expo-router'
+import { Ionicons } from '@expo/vector-icons'
+import RNPickerSelect from "react-native-picker-select";//for dropdowns and menus
+
+
+
+
+
+
+const slaughter = () => {
+    const router=useRouter();
+const [selectedValue,setSelectedValue]=useState(null);
+const [phoneNumber,setPhoneNumber] = useState("");
+const [selectedOption,setSelectedOption] =useState(null);
+  return (
+    <View style={styles.innerContainer}>
+        {/* Header */}
+        <View style={[styles.headerContainer, { marginTop: 15 }]}>
+          <TouchableOpacity
+            onPress={() => router.push({ pathname: "/homePage" })}
+          >
+            <Ionicons name="arrow-back" size={24} color="#000" />
+          </TouchableOpacity>
+          <Text style={styles.headerText}>Slaughter</Text>
+        </View>
+
+        {/* Full Name */}
+        <View style={styles.inputField}>
+          <Text style={styles.label}>Livestock type</Text>
+        </View>
+        <View style={[styles.inputContainer, { height: 47 }]}>
+          <View style={[styles.input, styles.dropdown]}>
+            <RNPickerSelect
+              onValueChange={(value) => setSelectedValue(value)}
+              items={[
+                { label: "Traditional", value: "traditional" },
+                { label: "Commercial", value: "commercial" },
+              ]}
+              placeholder={{ label: "Cattle", value: null }}
+              Icon={() => {
+                return <Ionicons name="chevron-down" size={20} color="#999" />;
+              }}
+            />
+          </View>
+        </View>
+
+        {/* Phone Number */}
+        <View style={styles.inputField}>
+          <Text style={styles.label}>Livestock ID</Text>
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Cd 23"
+            placeholderTextColor="#999"
+            keyboardType="numeric"
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
+          />
+        </View>
+
+        <View>
+          <View style={styles.sidesLabels}>
+            <Text style={styles.label}>Breed</Text>
+            <Text style={styles.label}>Age</Text>
+          </View>
+          <View style={[styles.sidesInputs, { gap: 10 }]}>
+            <View style={[styles.inputContainer, { height: 50, flex: 1 }]}>
+              <View style={[styles.input, styles.dropdown]}>
+                <RNPickerSelect
+                  onValueChange={(value) => setSelectedValue(value)}
+                  items={[
+                    { label: "Traditional", value: "traditional" },
+                    { label: "Commercial", value: "commercial" },
+                  ]}
+                  //placeholder={{ label: "Traditional", value: null }}
+                  Icon={() => {
+                    return (
+                      <Ionicons name="chevron-down" size={20} color="#999" />
+                    );
+                  }}
+                />
+              </View>
+            </View>
+
+            <TextInput
+              style={[styles.input, { flex: 1, marginRight: 10 }]}
+              placeholder="Write Number"
+              placeholderTextColor="#999"
+              keyboardType="numeric"
+            />
+          </View>
+        </View>
+
+        
+
+        <View style={styles.inputField}>
+          <Text style={styles.label}>Weight</Text>
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="320 KG"
+            placeholderTextColor="#999"
+            keyboardType="numeric"
+          />
+        </View>
+
+        <View style={styles.inputField}>
+          <Text style={styles.label}>Health status</Text>
+        </View>
+
+        <View style={[styles.sidesInputs, { gap: 10 }]}>
+          <View style={[styles.inputContainer, { height: 50, flex: 1 }]}>
+            <View style={[styles.input, styles.dropdown]}>
+              <RNPickerSelect
+                onValueChange={(value) => setSelectedValue(value)}
+                items={[
+                  { label: "Traditional", value: "traditional" },
+                  { label: "Commercial", value: "commercial" },
+                ]}
+                placeholder={{ label: "Fit for slaughter", value: null }}
+                Icon={() => {
+                  return (
+                    <Ionicons name="chevron-down" size={20} color="#999" />
+                  );
+                }}
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+  )
+}
+
+const styles =StyleSheet.create({
+
+    container: {
+        flex: 1,
+      },
+      innerContainer: {
+        width: "100%",
+        paddingHorizontal: 20,
+      },
+      headerContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 20,
+      },
+      headerText: {
+        fontSize: 24,
+        fontWeight: "600",
+        marginLeft: 10,
+      },
+      inputField: {
+        marginBottom: 5,
+      },
+      label: {
+        fontSize: 14,
+        fontWeight: "600",
+        color: "#475569",
+      },
+      inputContainer: {
+        marginBottom: 20,
+      },
+      input: {
+        borderColor: "#d1d5db",
+        borderWidth: 1,
+        borderRadius: 8,
+        paddingHorizontal: 10,
+        height: 50,
+        backgroundColor: "#fff", // Adding background for input fields
+      },
+      sidesLabels: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 5,
+      },
+      sidesInputs: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 20,
+      },
+      dropdown: {
+        flex: 1,
+        justifyContent: "center",
+        backgroundColor: "#fff", // Background for dropdown to match input style
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: "#d1d5db",
+        paddingHorizontal: 10,
+      },
+    
+      radioContainer: {
+        flexDirection: "row",
+        alignItems: "flex-start",
+        marginBottom: 20,
+      },
+    
+      radioGroup: {
+        flexDirection: "row", // Align all radio buttons horizontally
+        alignItems: "flex-start",
+        justifyContent: "space-around", // Space the buttons evenly
+        gap: 20,
+      },
+      radioButton: {
+        height: 20,
+        width: 20,
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: "#000",
+        alignItems: "center",
+        justifyContent: "center",
+      },
+      radioButtonSelected: {
+        height: 10,
+        width: 10,
+        borderRadius: 5,
+        backgroundColor: "#000",
+      },
+      radioText: {
+        marginLeft: 10,
+        fontSize: 16,
+      },
+      selectedText: {
+        marginTop: 20,
+        fontSize: 18,
+      },
+    
+      buttons: {
+        flexDirection: "row",
+        justifyContent: "center",
+        gap: 20,
+      },
+    
+      buttons1: {
+        width: "60%",
+        backgroundColor: "#EEFAEC",
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: Colors.green,
+      },
+    
+      buttonMainContaioner: {
+        flexDirection: "row",
+        alignItems: "flex-start",
+        justifyContent: "space-around",
+      },
+    
+      buttonText1: {
+        color: Colors.green,
+      },
+
+})
+
+export default slaughter
