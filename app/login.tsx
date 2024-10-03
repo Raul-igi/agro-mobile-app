@@ -103,10 +103,10 @@ const Page = () => {
             { marginBottom: 20, width:"100%" },
           ]}
            //onPress={() => router.push({pathname:`/verify/[phone]`})}
-           onPress={() => router.push({pathname:`/newLivestock`})}
+           onPress={() => router.push({pathname:`/verification`})}
 
         >
-          <Text style={defaultStyles.buttonText}>Continue</Text>
+          <Text style={defaultStyles.buttonText}>Sign In</Text>
         </TouchableOpacity>
        
        

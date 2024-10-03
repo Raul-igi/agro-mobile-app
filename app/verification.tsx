@@ -1,5 +1,5 @@
 import { defaultStyles } from '@/constants/Styles';
-//import { isClerkAPIResponseError, useSignIn, useSignUp } from '@clerk/clerk-expo';
+import { isClerkAPIResponseError, useSignIn, useSignUp } from '@clerk/clerk-expo';
 import { Link } from 'expo-router';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useLocalSearchParams } from 'expo-router';
@@ -16,7 +16,7 @@ import Colors from '@/constants/Colors';
 
 const CELL_COUNT = 4;
 
-const Page = () => {
+const verification = () => {
   const { phone, signin } = useLocalSearchParams<{ phone: string; signin: string }>();
   const [code, setCode] = useState('');
   const { signIn } = useSignIn();
@@ -187,4 +187,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Page;
+export default verification;

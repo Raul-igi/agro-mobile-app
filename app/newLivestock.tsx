@@ -44,9 +44,9 @@ const newLivestock = () => {
       behavior="padding"
       keyboardVerticalOffset={keyboardVerticalOffset}
     >
-      <View style={styles.innerContainer}>
-        {/* Header */}
-        <View style={[styles.headerContainer, { marginTop: 15 }]}>
+
+      <View style={styles.mainHeader}>
+      <View style={[styles.headerContainer, { marginTop:"20%",paddingHorizontal: 15, }]}>
           <TouchableOpacity
             onPress={() => router.push({ pathname: "/homePage" })}
           >
@@ -54,8 +54,10 @@ const newLivestock = () => {
           </TouchableOpacity>
           <Text style={styles.headerText}>New Livestock</Text>
         </View>
+      </View>
 
-        {/* Full Name */}
+      <View style={styles.innerContainer}>
+      
         <View style={styles.inputField}>
           <Text style={styles.label}>Livestock type</Text>
         </View>
@@ -215,11 +217,13 @@ const styles = StyleSheet.create({
   innerContainer: {
     width: "100%",
     paddingHorizontal: 20,
+    marginTop:"10%"
   },
   headerContainer: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 20,
+    
   },
   headerText: {
     fontSize: 24,
@@ -324,6 +328,14 @@ const styles = StyleSheet.create({
   buttonText1: {
     color: Colors.green,
   },
+
+  mainHeader:{
+    width:"100%",
+    backgroundColor:Colors.topSide,
+    height:"15%",
+    alignItems:"flex-start",
+  
+  }
 });
 
 export default newLivestock;

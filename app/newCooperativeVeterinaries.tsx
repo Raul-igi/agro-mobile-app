@@ -10,12 +10,14 @@ import {
 import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import RNPickerSelect from "react-native-picker-select";
-import { router } from "expo-router";
+import Colors from "@/constants/Colors";
+import { useRouter } from "expo-router";
 
 const newCooperative = () => {
   const [selectedValue, setSelectedValue] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState("");
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
+  const router=useRouter();
 
   return (
     <KeyboardAvoidingView
@@ -23,25 +25,28 @@ const newCooperative = () => {
       behavior="padding"
       keyboardVerticalOffset={keyboardVerticalOffset}
     >
-      <View style={styles.innerContainer}>
-        {/* Header */}
-        <View style={[styles.headerContainer,{marginTop:15}]}>
+
+<View style={styles.mainHeader}>
+      <View style={[styles.headerContainer, { marginTop:"20%",paddingHorizontal: 15, }]}>
           <TouchableOpacity
-          onPress={() => router.push({pathname:"/homePage"})}
+            onPress={() => router.push({ pathname: "/homePage" })}
           >
             <Ionicons name="arrow-back" size={24} color="#000" />
           </TouchableOpacity>
           <Text style={styles.headerText}>New Cooperative</Text>
         </View>
+      </View>
 
-        {/* Full Name */}
+
+      <View style={styles.innerContainer}>
+       
         <View style={styles.inputField}>
           <Text style={styles.label}>Name</Text>
         </View>
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="Write full name"
+            placeholder="Write Cooperative name"
             placeholderTextColor="#999"
           />
         </View>
@@ -73,19 +78,25 @@ const newCooperative = () => {
             placeholderTextColor="#999"
             keyboardType="numeric"
           />
-          <TextInput
-            style={[styles.input, { flex: 1 }]}
+         <TextInput
+            style={[styles.input, { flex: 1,  }]} // Adding marginRight for space
             placeholder="Write Number"
             placeholderTextColor="#999"
             keyboardType="numeric"
           />
         </View>
 
+        <View style={styles.collapsibleContent}>
+              <View style={styles.separateLine}>
+                <Text>-</Text>
+              </View>
+            </View>
+
         {/* Type of Farmer */}
         <View style={styles.inputField}>
           <Text style={styles.label}>Type of Farmer</Text>
         </View>
-        <View style={[styles.inputContainer,{height:47}]}>
+        <View style={[styles.inputContainer,styles.inputField2]}>
           <View style={[styles.input, styles.dropdown]}>
             <RNPickerSelect
               onValueChange={(value) => setSelectedValue(value)}
@@ -93,7 +104,7 @@ const newCooperative = () => {
                 { label: "Traditional", value: "traditional" },
                 { label: "Commercial", value: "commercial" },
               ]}
-              //placeholder={{ label: "Traditional", value: null }}
+              placeholder={{ label: "Traditional", value: null }}
               Icon={() => {
                 return <Ionicons name="chevron-down" size={20} color="#999" />;
               }}
@@ -103,19 +114,26 @@ const newCooperative = () => {
 
         {/* Type, Total Number */}
         <View style={styles.sidesLabels}>
-          <Text style={styles.label}>Crop</Text>
-          <Text style={styles.label}>Area</Text>
+          <Text style={styles.label}>Type</Text>
+          <Text style={styles.label}>Total Number</Text>
         </View>
         <View style={styles.sidesInputs}>
-          <TextInput
-            style={[styles.input, { flex: 1, marginRight: 10 }]} // Adding marginRight for space
-            placeholder="Crop Name"
-            placeholderTextColor="#999"
-            keyboardType="numeric"
-          />
+          <View style={[styles.input, styles.dropdown, { marginRight: 10 }]}>
+            <RNPickerSelect
+              onValueChange={(value) => setSelectedValue(value)}
+              items={[
+                { label: "Cow", value: "cow" },
+                { label: "Goat", value: "goat" },
+              ]}
+              placeholder={{ label: "Cow", value: null }}
+              Icon={() => {
+                return <Ionicons name="chevron-down" size={20} color="#999" />;
+              }}
+            />
+          </View>
           <TextInput
             style={[styles.input, { flex: 1 }]}
-            placeholder="Planted Area"
+            placeholder="ex: 20"
             placeholderTextColor="#999"
             keyboardType="numeric"
           />
@@ -123,37 +141,23 @@ const newCooperative = () => {
 
         {/* Male Number, Female Number */}
         <View style={styles.sidesLabels}>
-          <Text style={styles.label}>Input Used</Text>
-          <Text style={styles.label}>Fertilizer</Text>
+          <Text style={styles.label}>Male Number</Text>
+          <Text style={styles.label}>Female Number</Text>
         </View>
         <View style={styles.sidesInputs}>
           <TextInput
             style={[styles.input, { flex: 1, marginRight: 10 }]} // Adding marginRight for space
-            placeholder="Seeds Input"
+            placeholder="ex: 20"
             placeholderTextColor="#999"
             keyboardType="numeric"
           />
           <TextInput
             style={[styles.input, { flex: 1 }]}
-            placeholder="Fertilizer Used"
+            placeholder="ex: 20"
             placeholderTextColor="#999"
             keyboardType="numeric"
           />
         </View>
-
-        <View style={styles.inputField}>
-          <Text style={styles.label}>Produce Harvested</Text>
-        </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Harvest amount"
-            placeholderTextColor="#999"
-            keyboardType="numeric"
-            
-          />
-        </View>
-        
       </View>
     </KeyboardAvoidingView>
   );
@@ -166,6 +170,8 @@ const styles = StyleSheet.create({
   innerContainer: {
     width: "100%",
     paddingHorizontal: 20,
+    marginTop:"10%"
+
   },
   headerContainer: {
     flexDirection: "row",
@@ -179,6 +185,11 @@ const styles = StyleSheet.create({
   },
   inputField: {
     marginBottom: 5,
+  },
+
+  inputField2: {
+    marginBottom: 5,
+    height:50
   },
   label: {
     fontSize: 14,
@@ -214,6 +225,26 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#d1d5db",
     paddingHorizontal: 10,
+  },
+
+  mainHeader:{
+    width:"100%",
+    backgroundColor:Colors.topSide,
+    height:"15%",
+    alignItems:"flex-start",
+  
+  },
+  collapsibleContent: {
+    padding: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  separateLine: {
+    backgroundColor: "#CBD5E1",
+    height: 1,
+    marginTop: 15,
+    marginBottom: 10,
+    width: "100%",
   },
 });
 

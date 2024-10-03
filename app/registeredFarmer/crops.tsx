@@ -64,15 +64,30 @@ const App = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.headerContainer, { marginTop: -25 }]}>
-        <TouchableOpacity
-          onPress={() => router.push({ pathname: "/homePage" })}
-        >
-          <Ionicons name="arrow-back" size={24} color="#000" />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>Oliver Kwizera</Text>
+
+    
+    <View >
+
+
+<View style={styles.mainHeader}>
+      <View style={[styles.headerContainer, { marginTop:"20%",paddingHorizontal: 15, }]}>
+          <TouchableOpacity
+            onPress={() => router.push({ pathname: "/homePage" })}
+          >
+            <Ionicons name="arrow-back" size={24} color="#000" />
+          </TouchableOpacity>
+          <Text style={styles.headerText}>Olivier Kwizera</Text>
+        </View>
       </View>
+
+
+
+
+
+
+
+
+     <View style={styles.container}>
 
       <SegmentedControlTab
         values={["Crops", "Livestock"]}
@@ -385,7 +400,7 @@ const App = () => {
                 styles.enabled2,
                 { marginBottom: 20, width: "100%" },
               ]}
-              onPress={() => router.push({ pathname: "/cellLevel/homePage" })}
+              onPress={() => router.push({ pathname: "/veterinaies/homePage" })}
             >
               <Text style={[defaultStyles.buttonText, styles.buttonText2]}>
                 Add Crop
@@ -551,7 +566,7 @@ const App = () => {
         </View>
       </Modal>
 
-
+      </View>
     </View>
   );
 };
@@ -559,9 +574,11 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 10,
     paddingHorizontal: 10,
   },
+
+
   tabsContainer: {
     marginVertical: 20,
   },
@@ -744,6 +761,14 @@ const styles = StyleSheet.create({
     borderColor: "#d1d5db",
     paddingHorizontal: 10,
   },
+
+  mainHeader:{
+    width:"100%",
+    backgroundColor:Colors.topSide,
+    height:"38%",
+    alignItems:"flex-start",
+  
+  }
 });
 
 export default App;

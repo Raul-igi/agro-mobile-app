@@ -33,7 +33,7 @@ import {
             >
               <Ionicons name="arrow-back" size={24} color="#000" />
             </TouchableOpacity>
-            <Text style={styles.headerText}>New Farmerrr</Text>
+            <Text style={styles.headerText}>New Farmer</Text>
           </View>
   
           

@@ -90,6 +90,61 @@ const InitialLayout = () => {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="verification" options={{ headerShown: false }} />
+      <Stack.Screen name="newLivestock" options={{ headerShown: false }} /> 
+      <Stack.Screen name="registeredFarmer/crops" options={{ headerShown: false }} />
+      <Stack.Screen name="newFarmer" options={{ headerShown: false }} /> 
+      <Stack.Screen name="newCooperative" options={{ headerShown: false }} /> 
+      <Stack.Screen name="newCooperativeAgronomies" options={{ headerShown: false }} /> 
+      <Stack.Screen name="newCooperativeVeterinaries" options={{ headerShown: false }} /> 
+
+
+
+
+      <Stack.Screen
+        name="agronomies/homePage"
+        options={{
+          title: "",
+          headerBackTitle: "",
+          headerStyle: {backgroundColor:Colors.topSide},
+          headerLeft: () => (
+            <TouchableOpacity>
+              <Link href={"/"}>
+                {/* <Ionicons name="arrow-back" size={24} color={Colors.dark} /> */}
+              </Link>
+            </TouchableOpacity>
+          ),
+        }}
+      />
+
+
+      <Stack.Screen
+        name="veterinaies/homePage"
+        options={{
+          title: "",
+          headerBackTitle: "",
+          headerStyle: {backgroundColor:Colors.topSide},
+          headerLeft: () => (
+            <TouchableOpacity>
+              <Link href={"/"}>
+                {/* <Ionicons name="arrow-back" size={24} color={Colors.dark} /> */}
+              </Link>
+            </TouchableOpacity>
+          ),
+        }}
+      />
+
+
+
+
+
+
+
+
+
+
+
+
       <Stack.Screen
         name="signup"
         options={{
@@ -165,21 +220,9 @@ const InitialLayout = () => {
 
 
 
-<Stack.Screen
-        name="verify/[phone]"
-        options={{
-          title: "",
-          headerBackTitle: "",
-          headerStyle: {backgroundColor:Colors.background},
-          headerLeft: () => (
-            <TouchableOpacity>
-              <Link href={"/"}>
-                <Ionicons name="arrow-back" size={24} color={Colors.dark} />
-              </Link>
-            </TouchableOpacity>
-          ),
-        }}
-      />
+
+
+
 
 <Stack.Screen
         name="homePage"
@@ -204,55 +247,13 @@ const InitialLayout = () => {
         }}
       />
 
-<Stack.Screen
-        name="newCooperative"
-        options={{
-          title: "",
-          headerBackTitle: "",
-          headerStyle: {backgroundColor:Colors.topSide},
-          headerLeft: () => (
-            <TouchableOpacity>
-              <Link href={"/"}>
-                {/* <Ionicons name="arrow-back" size={24} color={Colors.dark} /> */}
-              </Link>
-            </TouchableOpacity>
-          ),
-        }}
-      />
 
 
-<Stack.Screen
-        name="registeredFarmer/crops"
-        options={{
-          title: "",
-          headerBackTitle: "",
-          headerStyle: {backgroundColor:Colors.topSide},
-          headerLeft: () => (
-            <TouchableOpacity>
-              <Link href={"/"}>
-                {/* <Ionicons name="arrow-back" size={24} color={Colors.dark} /> */}
-              </Link>
-            </TouchableOpacity>
-          ),
-        }}
-      />
 
 
-<Stack.Screen
-        name="cellLevel/homePage"
-        options={{
-          title: "",
-          headerBackTitle: "",
-          headerStyle: {backgroundColor:Colors.topSide},
-          headerLeft: () => (
-            <TouchableOpacity>
-              <Link href={"/"}>
-                {/* <Ionicons name="arrow-back" size={24} color={Colors.dark} /> */}
-              </Link>
-            </TouchableOpacity>
-          ),
-        }}
-      />
+
+
+
 
 <Stack.Screen
         name="registeredFarmer"
@@ -286,21 +287,8 @@ const InitialLayout = () => {
         }}
       />
 
-<Stack.Screen
-        name="newLivestock"
-        options={{
-          title: "",
-          headerBackTitle: "",
-          headerStyle: {backgroundColor:Colors.topSide},
-          headerLeft: () => (
-            <TouchableOpacity>
-              <Link href={"/"}>
-                {/* <Ionicons name="arrow-back" size={24} color={Colors.dark} /> */}
-              </Link>
-            </TouchableOpacity>
-          ),
-        }}
-      />
+
+
 
 <Stack.Screen
         name="slaughter"

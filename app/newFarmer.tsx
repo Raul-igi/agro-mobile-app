@@ -10,11 +10,14 @@ import {
 import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import RNPickerSelect from "react-native-picker-select";
+import Colors from "@/constants/Colors";
+import { useRouter } from "expo-router";
 
 const NewFarmer = () => {
   const [selectedValue, setSelectedValue] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState("");
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
+  const router=useRouter();
 
   return (
     <KeyboardAvoidingView
@@ -22,16 +25,21 @@ const NewFarmer = () => {
       behavior="padding"
       keyboardVerticalOffset={keyboardVerticalOffset}
     >
-      <View style={styles.innerContainer}>
-        {/* Header */}
-        <View style={[styles.headerContainer, { marginTop: 15 }]}>
-          <TouchableOpacity>
+
+<View style={styles.mainHeader}>
+      <View style={[styles.headerContainer, { marginTop:"20%",paddingHorizontal: 15, }]}>
+          <TouchableOpacity
+            onPress={() => router.push({ pathname: "/homePage" })}
+          >
             <Ionicons name="arrow-back" size={24} color="#000" />
           </TouchableOpacity>
           <Text style={styles.headerText}>New Farmer</Text>
         </View>
+      </View>
 
-        {/* Full Name */}
+
+      <View style={styles.innerContainer}>
+       
         <View style={styles.inputField}>
           <Text style={styles.label}>Full Name</Text>
         </View>
@@ -85,11 +93,18 @@ const NewFarmer = () => {
           </View>
         </View>
 
+
+        <View style={styles.collapsibleContent}>
+              <View style={styles.separateLine}>
+                <Text>-</Text>
+              </View>
+            </View>
+
         {/* Type of Farmer */}
         <View style={styles.inputField}>
           <Text style={styles.label}>Type of Farmer</Text>
         </View>
-        <View style={styles.inputContainer}>
+        <View style={[styles.inputContainer,styles.inputField2]}>
           <View style={[styles.input, styles.dropdown]}>
             <RNPickerSelect
               onValueChange={(value) => setSelectedValue(value)}
@@ -163,6 +178,8 @@ const styles = StyleSheet.create({
   innerContainer: {
     width: "100%",
     paddingHorizontal: 20,
+    marginTop:"10%"
+
   },
   headerContainer: {
     flexDirection: "row",
@@ -176,6 +193,11 @@ const styles = StyleSheet.create({
   },
   inputField: {
     marginBottom: 5,
+  },
+
+  inputField2: {
+    marginBottom: 5,
+    height:50
   },
   label: {
     fontSize: 14,
@@ -211,6 +233,27 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#d1d5db",
     paddingHorizontal: 10,
+  },
+
+  mainHeader:{
+    width:"100%",
+    backgroundColor:Colors.topSide,
+    height:"15%",
+    alignItems:"flex-start",
+  
+  },
+  
+  collapsibleContent: {
+    padding: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  separateLine: {
+    backgroundColor: "#CBD5E1",
+    height: 1,
+    marginTop: 15,
+    marginBottom: 10,
+    width: "100%",
   },
 });
 

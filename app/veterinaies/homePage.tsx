@@ -17,7 +17,7 @@ import RNPickerSelect from "react-native-picker-select";
 
 
 
-const App = () => {
+const homePage = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -36,11 +36,11 @@ const App = () => {
   ];
 
   const DATA_2 = [
-    { id: '1', name: 'Korandebe', types: 'Corn • Rice • Beans' },
-    { id: '2', name: 'Kigali Farms', types: 'Mushrooms' },
-    { id: '3', name: 'Abashingasuka', types: 'Potatoes • Rice • Corn' },
-    { id: '4', name: 'Abatarushwa', types: 'Potatoes • Rice • Beans' },
-    { id: '5', name: 'KOKIADU', types: 'Rice' },
+    { id: '1', name: 'Masaka Creamery', types: 'Cows' },
+    { id: '2', name: 'Mishashi Farms', types: 'Poultry' },
+    { id: '3', name: 'Premier pig Farms', types: 'Pottery' },
+    { id: '4', name: 'Pride farms Ltd', types: 'Cows' },
+    { id: '5', name: 'Diamond Farm', types: 'Pottery' },
     
   ];
   const router=useRouter();
@@ -64,10 +64,10 @@ const App = () => {
     
     <View style={styles.topLevel}>
       <Text style={styles.header}>Urugwiro</Text>
-      <Text style={styles.subHeader}>Cultivated Land</Text>
-      <Text style={styles.landAmount}>1321 ha</Text>
+      <Text style={styles.subHeader}>Total livestock</Text>
+      <Text style={styles.landAmount}>12,765</Text>
       </View>
-      <Image source={require("@/assets/images/icons/vectorBranchTree.png")} style={[styles.topRightImage,{tintColor:"#BEE2AC"}]} />
+      <Image source={require("@/assets/images/icons/cow.png")} style={[styles.topRightImage,{tintColor:"#BEE2AC"}]} />
 
      
       <SegmentedControlTab
@@ -95,7 +95,7 @@ const App = () => {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.addButton}
-                 onPress={() => router.push({pathname:`/farmerRegistrationFlow/newFarmer`})}
+                 onPress={() => router.push({pathname:`/newFarmer`})}
 
       >
         <Text style={styles.addButtonText}>+</Text>
@@ -116,7 +116,7 @@ const App = () => {
            </TouchableOpacity>
 
            <TouchableOpacity style={styles.addButton2}
-                //onPress={() => router.push({pathname:`/farmerRegistrationFlow/ewFarmer`})}
+                onPress={() => router.push({pathname:`/newCooperativeVeterinaries`})}
 
      >
        <Text style={styles.addButtonText2}>+</Text>
@@ -291,4 +291,4 @@ const styles = StyleSheet.create({
   // Additional styles as required for other components
 });
 
-export default App;
+export default homePage;

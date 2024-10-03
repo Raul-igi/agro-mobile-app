@@ -71,7 +71,7 @@ const HomePage = () => {
       />
       
       <TouchableOpacity style={styles.addButton}
-                 onPress={() => router.push({pathname:`/newCooperative`})}
+                 onPress={() => router.push({pathname:`/newCooperativeAgronomies`})}
 
       >
         <Text style={styles.addButtonText}>+</Text>
